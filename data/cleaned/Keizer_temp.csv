@@ -1,4 +1,4 @@
-qualifiers_max_watertemp,qualifiers_mean_watertemp,max_watertemp_f,mean_watertemp_f,date
+qualifiers_upstream_max_watertemp,qualifiers_upstream_mean_watertemp,upstream_max_watertemp,upstream_mean_watertemp,date
 ['A'],['A'],57.92,56.84,2022-06-01
 ['A'],['A'],59.36,58.28,2022-06-02
 ['A'],['A'],59.18,58.459999999999994,2022-06-03

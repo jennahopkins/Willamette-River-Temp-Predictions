@@ -28,7 +28,7 @@ salem_discharge = salem_discharge[salem_discharge["dateTime"].dt.month.isin([6, 
 newberg_temp = newberg_temp[newberg_temp["dateTime"].dt.month.isin([6, 7, 8])]
 newberg_discharge = newberg_discharge[newberg_discharge["dateTime"].dt.month.isin([6, 7, 8])]
 
-# RENAME COLUMNS
+# RENAME AIR TEMPCOLUMNS
 meteo_data = meteo_data.rename(columns = {"temperature_2m_max": "max_airtemp_f", "temperature_2m_min": "min_airtemp_f", "temperature_2m_mean": "mean_airtemp_f"})
 
 # CONVERT TO NUMERIC
@@ -72,6 +72,12 @@ newberg_discharge = newberg_discharge.drop(columns = ["dateTime"])
 keizer_temp = keizer_temp.sort_values("date").reset_index(drop = True)
 keizer_temp["mean_watertemp_f"] = keizer_temp["mean_watertemp_f"].interpolate(method = "linear")
 keizer_temp["qualifiers_mean_watertemp"] = keizer_temp["qualifiers_mean_watertemp"].fillna("['I']")
+
+# RENAME UPSTREAM/TARGET COLUMNS
+newberg_discharge = newberg_discharge.rename(columns = {"discharge": "target_discharge", "qualifiers_discharge": "qualifiers_target_discharge"})
+newberg_temp = newberg_temp.rename(columns = {"max_watertemp_f": "target_max_watertemp", "mean_watertemp_f": "target_mean_watertemp", "qualifiers_max_watertemp": "qualifiers_target_max_watertemp", "qualifiers_mean_watertemp": "qualifiers_target_mean_watertemp"})
+salem_discharge = salem_discharge.rename(columns = {"discharge": "upstream_discharge", "qualifiers_discharge": "qualifiers_upstream_discharge"})
+keizer_temp = keizer_temp.rename(columns = {"max_watertemp_f": "upstream_max_watertemp", "mean_watertemp_f": "upstream_mean_watertemp", "qualifiers_max_watertemp": "qualifiers_upstream_max_watertemp", "qualifiers_mean_watertemp": "qualifiers_upstream_mean_watertemp"})
 
 
 # SAVE CLEANED DATA
